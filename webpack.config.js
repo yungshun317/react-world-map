@@ -1,11 +1,33 @@
 const currentTask = process.env.npm_lifecycle_event;
 const path = require("path");
+const fse = require("fs-extra");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 // let cssConfig;
-// let pages;
+
+console.log(path.resolve(__dirname));
+
+/*
+let pages = fse
+    .readdirSync("./")
+    .filter(function(file) {
+        return file.endsWith(".html");
+    })
+    .map(function(page) {
+        return new HtmlWebpackPlugin({
+            filename: page,
+            template: `./${page}`
+        })
+    });
+*/
 
 let config = {
-    entry: "./app/assets/scripts/App.js",
-    // plugins: pages,
+    entry: "./src/Main.js",
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "index.html"
+        })
+    ],
     module: {
         rules: [
             // cssConfig,
@@ -15,7 +37,10 @@ let config = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-react", "@babel/preset-env"]
+                        presets: [
+                            "@babel/preset-env",
+                            ["@babel/preset-react", {"runtime": "automatic"}]
+                        ]
                     }
                 }
             }
@@ -25,16 +50,17 @@ let config = {
 
 if (currentTask === "dev") {
     config.output = {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "app")
+        filename: "bundled.js",
+        path: path.resolve(__dirname),
     };
 
     config.devServer = {
-        watchFiles: [ "app/**/*.html" ],
+        watchFiles: [ "*.html" ],
         static: {
-            directory: path.join(__dirname, "app"),
+            directory: path.join(__dirname, "public"),
             watch: false
         },
+        // allowedHosts: [ "all" ],
         hot: true,
         port: 3000
     }
