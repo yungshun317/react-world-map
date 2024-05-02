@@ -22,6 +22,7 @@ let pages = fse
 */
 
 let config = {
+    // target: "web",
     entry: "./src/main.jsx",
     plugins: [
         new HtmlWebpackPlugin({
@@ -67,20 +68,25 @@ let config = {
 if (currentTask === "dev") {
     config.output = {
         filename: "bundled.js",
-        path: path.resolve(__dirname, "./"),
+        path: path.resolve(__dirname),
     };
 
     config.devServer = {
-        watchFiles: [ "*.html" ],
+        watchFiles: [ "src/**/*" ],
         static: {
             directory: path.join(__dirname, "public"),
             watch: false
         },
-        // allowedHosts: [ "all" ],
+        allowedHosts: "all",
         hot: true,
-        port: 3000
+        port: 3000,
+        open: true,
+        client: {
+            logging: "none",
+            overlay: true
+        },
+        compress: true
     }
-
     config.mode = "development";
 }
 
