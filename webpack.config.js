@@ -22,7 +22,7 @@ let pages = fse
 */
 
 let config = {
-    entry: "./src/Main.js",
+    entry: "./src/main.jsx",
     plugins: [
         new HtmlWebpackPlugin({
             template: "index.html"
@@ -31,6 +31,21 @@ let config = {
     module: {
         rules: [
             // cssConfig,
+            {
+                test: /\.jsx$/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: [
+                            "@babel/preset-env",
+                            ["@babel/preset-react", {"runtime": "automatic"}]
+                        ]
+                    }
+                },
+                resolve: { extensions: [".js", ".jsx"] }
+            },
+            /*
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
@@ -44,6 +59,7 @@ let config = {
                     }
                 }
             }
+            */
         ]
     }
 }
@@ -51,7 +67,7 @@ let config = {
 if (currentTask === "dev") {
     config.output = {
         filename: "bundled.js",
-        path: path.resolve(__dirname),
+        path: path.resolve(__dirname, "./"),
     };
 
     config.devServer = {
