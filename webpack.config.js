@@ -3,10 +3,24 @@ const path = require("path");
 const fse = require("fs-extra");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-// let cssConfig;
-
-console.log(path.resolve(__dirname));
+let cssConfig = {
+    test: /\.css$/i,
+    use: [
+        // MiniCssExtractPlugin.loader,
+        "style-loader",
+        {
+            loader: "css-loader",
+            options: {
+                modules: {
+                    localIdentName: "[path]___[name]__[local]___[hash:base64:5]"
+                }
+            }
+        }
+    ],
+    // include: /\.module\.css$/
+}
 
 /*
 let pages = fse
@@ -28,11 +42,19 @@ let config = {
         new HtmlWebpackPlugin({
             template: "index.html"
         }),
+        new MiniCssExtractPlugin({
+            filename: "style.css"
+        }),
         new ESLintPlugin()
     ],
     module: {
         rules: [
-            // cssConfig,
+            cssConfig,
+            // {
+            //     test: /\.css$/,
+            //    use: ["style-loader", "css-loader"],
+            //    exclude: /\.module\.css$/,
+            // },
             {
                 test: /\.jsx$/,
                 exclude: /(node_modules)/,
