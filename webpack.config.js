@@ -2,6 +2,7 @@ const currentTask = process.env.npm_lifecycle_event;
 const path = require("path");
 const fse = require("fs-extra");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 // let cssConfig;
 
@@ -22,12 +23,12 @@ let pages = fse
 */
 
 let config = {
-    // target: "web",
     entry: "./src/main.jsx",
     plugins: [
         new HtmlWebpackPlugin({
             template: "index.html"
-        })
+        }),
+        new ESLintPlugin()
     ],
     module: {
         rules: [
@@ -77,7 +78,7 @@ if (currentTask === "dev") {
             directory: path.join(__dirname, "public"),
             watch: false
         },
-        allowedHosts: "all",
+        // allowedHosts: "all",
         hot: true,
         port: 3000,
         open: true,
@@ -85,7 +86,8 @@ if (currentTask === "dev") {
             logging: "none",
             overlay: true
         },
-        compress: true
+        compress: true,
+        historyApiFallback: true
     }
     config.mode = "development";
 }
