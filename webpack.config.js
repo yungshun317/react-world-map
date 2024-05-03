@@ -20,7 +20,7 @@ let cssConfig = {
             }
         }
     ],
-    // include: /\.module\.css$/
+    include: /\.module\.css$/
 }
 
 /*
@@ -51,11 +51,11 @@ let config = {
     module: {
         rules: [
             cssConfig,
-            // {
-            //     test: /\.css$/,
-            //    use: ["style-loader", "css-loader"],
-            //    exclude: /\.module\.css$/,
-            // },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
+                exclude: /\.module\.css$/,
+            },
             {
                 test: /\.jsx$/,
                 exclude: /(node_modules)/,
