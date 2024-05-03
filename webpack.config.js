@@ -14,7 +14,8 @@ let cssConfig = {
             loader: "css-loader",
             options: {
                 modules: {
-                    localIdentName: "[path]___[name]__[local]___[hash:base64:5]"
+                    // localIdentName: "_[path]_[name]_[local]_[hash:base64:5]"
+                    localIdentName: "_[local]_[hash:base64:5]"
                 }
             }
         }
