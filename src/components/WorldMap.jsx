@@ -1,6 +1,6 @@
-import * as styles from "./Map.module.css";
+import * as styles from "./WorldMap.module.css";
 
-function Map() {
+function WorldMap() {
     return (
         <div className={styles.mapContainer}>
             Map
@@ -8,4 +8,4 @@ function Map() {
     );
 }
 
-export default Map;
+export default WorldMap;
