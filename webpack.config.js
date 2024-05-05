@@ -92,13 +92,14 @@ let config = {
 if (currentTask === "dev") {
     config.output = {
         filename: "bundled.js",
-        path: path.resolve(__dirname),
+        path: path.resolve(__dirname)
     };
 
     config.devServer = {
         watchFiles: [ "src/**/*" ],
         static: {
             directory: path.join(__dirname, "public"),
+            publicPath: "/public",
             watch: false
         },
         // allowedHosts: "all",
