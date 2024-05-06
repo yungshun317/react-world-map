@@ -21,11 +21,11 @@ function CityItem({city}) {
         position: {lat: 38.727881642324164, lng: -9.140900099907554}
         [[Prototype]]: Object
      */
-    const { cityName, emoji, date, id } = city;
+    const { cityName, emoji, date, id, position } = city;
 
     return (
         <li>
-            <Link className={styles.cityItem} to={`cities/${id}`}>
+            <Link className={styles.cityItem} to={`cities/${id}?lat=${position.lat}&lng=${position.lng}`}>
                 <span className={styles.emoji}>{emoji}</span>
                 <h3 className={styles.name}>{cityName}</h3>
                 <time className={styles.date}>{formatDate(date)}</time>
