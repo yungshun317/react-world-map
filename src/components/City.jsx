@@ -28,7 +28,12 @@ function City() {
     const {cityName, emoji, date, notes} = currentCity;
 
     return (
-        <div className={styles.city}>
+        <>
+            <p>
+                City {id} lat {lat} lng {lng}
+            </p>
+            { /*
+            <div className={styles.city}>
             <div className={styles.row}>
                 <h6>City name</h6>
                 <h3>
@@ -63,6 +68,8 @@ function City() {
                 <ButtonBack/>
             </div>
         </div>
+        */ }
+        </>
     );
 }
 
