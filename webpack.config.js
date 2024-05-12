@@ -46,7 +46,7 @@ let config = {
         new MiniCssExtractPlugin({
             filename: "style.css"
         }),
-        new ESLintPlugin()
+        // new ESLintPlugin()
     ],
     module: {
         rules: [
