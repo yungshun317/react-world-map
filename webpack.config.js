@@ -109,7 +109,7 @@ if (currentTask === "dev") {
         open: true,
         client: {
             logging: "none",
-            overlay: true
+            overlay: false
         },
         compress: true,
         historyApiFallback: true
